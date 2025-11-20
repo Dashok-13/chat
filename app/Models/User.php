@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Conversation;
 
 class User extends Authenticatable
 {
@@ -47,6 +48,9 @@ class User extends Authenticatable
     }
     public function conversations(){
         
-        return $this->hasMany(Conversation::class, 'sender_id')->orWhere('receiver_id', $this->id);
+        return Conversation::where(function($query) {
+            $query->where('sender_id', $this->id)
+                  ->orWhere('receiver_id', $this->id);
+        });
     }
 }

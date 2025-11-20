@@ -12,7 +12,6 @@ class Chat extends Component
 
     public function mount(){
         $this->selectedConversation = Conversation::findOrFail($this->id);
-        // dd(this->selectedConversation);
     }
 
     public function render()
