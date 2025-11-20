@@ -21,8 +21,15 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::middleware('auth')->group(function (){
 Route::get('/chat', \App\Livewire\Chat\Index::class)->name('chat.index');
 Route::get('/chat/{id}', \App\Livewire\Chat\Chat::class)->name('chat');
+
+Route::get('/users', \App\Livewire\Users::class)->name('users');
+});
+
+
+
 
 // Route::get('/simple-chat', function () {
 //     return '<div>index</div>';
